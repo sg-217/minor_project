@@ -1,0 +1,94 @@
+.analytics-page {
+  animation: fadeIn 0.5s ease;
+}
+
+.period-selector {
+  display: flex;
+  gap: 5px;
+  background: white;
+  padding: 5px;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.period-selector button {
+  padding: 8px 20px;
+  border: none;
+  background: transparent;
+  color: #4a5568;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.period-selector button:hover {
+  background: #f7fafc;
+}
+
+.period-selector button.active {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+}
+
+.metric-card {
+  background: white;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+}
+
+.metric-icon {
+  font-size: 36px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border-radius: 12px;
+}
+
+.metric-info h4 {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 5px;
+}
+
+.metric-info p {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.metric-info p.positive {
+  color: var(--success);
+}
+
+.metric-info p.negative {
+  color: var(--danger);
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .period-selector {
+    width: 100%;
+  }
+
+  .period-selector button {
+    flex: 1;
+  }
+}
