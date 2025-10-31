@@ -1,94 +1,72 @@
-.analytics-page {
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Page Animation */
+.flex {
   animation: fadeIn 0.5s ease;
 }
 
-.period-selector {
-  display: flex;
-  gap: 5px;
-  background: white;
-  padding: 5px;
-  border-radius: 8px;
-  box-shadow: var(--shadow);
+/* Charts customization */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke-opacity: 0.15;
 }
 
-.period-selector button {
-  padding: 8px 20px;
-  border: none;
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+/* Recharts text color in dark mode */
+.dark .recharts-text {
+  fill: rgb(156, 163, 175);
+}
+
+/* Custom scrollbar for overflow content */
+.overflow-x-auto::-webkit-scrollbar {
+  height: 8px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
   background: transparent;
-  color: #4a5568;
-  font-weight: 600;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s;
 }
 
-.period-selector button:hover {
-  background: #f7fafc;
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: rgb(209, 213, 219);
+  border-radius: 9999px;
 }
 
-.period-selector button.active {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  color: white;
+.dark .overflow-x-auto::-webkit-scrollbar-thumb {
+  background-color: rgb(55, 65, 81);
 }
 
-.metric-card {
-  background: white;
-  padding: 20px;
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  transition: transform 0.3s ease;
+/* Icon transitions */
+.material-symbols-outlined {
+  transition: transform 0.2s ease;
 }
 
-.metric-card:hover {
-  transform: translateY(-5px);
+button:hover .material-symbols-outlined {
+  transform: translateY(-1px);
 }
 
-.metric-icon {
-  font-size: 36px;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-  border-radius: 12px;
+/* Card transitions */
+.rounded-xl {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.metric-info h4 {
-  font-size: 14px;
-  color: #718096;
-  margin-bottom: 5px;
+.rounded-xl:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-.metric-info p {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--dark);
-}
-
-.metric-info p.positive {
-  color: var(--success);
-}
-
-.metric-info p.negative {
-  color: var(--danger);
-}
-
-@media (max-width: 768px) {
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-
-  .period-selector {
-    width: 100%;
-  }
-
-  .period-selector button {
-    flex: 1;
-  }
+.dark .rounded-xl:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+    0 4px 6px -2px rgba(0, 0, 0, 0.2);
 }
