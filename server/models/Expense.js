@@ -30,6 +30,7 @@ const expenseSchema = new mongoose.Schema(
         "emergency",
         "other",
         "gasoline",
+        "groceries",
       ],
     },
     description: {

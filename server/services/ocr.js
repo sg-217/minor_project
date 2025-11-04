@@ -102,7 +102,7 @@ class OCRService {
       return {
         success: true,
         extracted_ocr_data: {
-          date: parsedDate,
+          date: rawDate,
           vendor:
             getFieldValue("supplier_name") ||
             getFieldValue("merchant_name") ||

@@ -4,132 +4,142 @@ import "./VoiceAssistant.css";
 
 const VoiceAssistant = () => {
   const [isListening, setIsListening] = useState(false);
-  const [transcript, setTranscript] = useState("");
-  const [response, setResponse] = useState("");
+  const [liveText, setLiveText] = useState("");
+  const [messages, setMessages] = useState([]); // {role, text}
   const [recognition, setRecognition] = useState(null);
 
   useEffect(() => {
-    // Check if browser supports Web Speech API
     if ("webkitSpeechRecognition" in window || "SpeechRecognition" in window) {
       const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
-      const recognitionInstance = new SpeechRecognition();
+      const rec = new SpeechRecognition();
 
-      recognitionInstance.continuous = false;
-      recognitionInstance.interimResults = false;
-      recognitionInstance.lang = "en-IN";
+      rec.continuous = false;
+      rec.interimResults = true;
+      rec.lang = "en-IN"; // Supports Hindi + English + Hinglish
 
-      recognitionInstance.onresult = async (event) => {
-        const spokenText = event.results[0][0].transcript;
-        setTranscript(spokenText);
+      rec.onresult = async (event) => {
+        let finalText = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const transcript = event.results[i][0].transcript;
+          if (!event.results[i].isFinal) {
+            setLiveText(transcript);
+          } else {
+            finalText += transcript;
+          }
+        }
+
+        if (finalText.trim() === "") return;
+
+        setLiveText("");
+        addMessage("user", finalText);
 
         try {
-          const res = await processVoiceCommand({ transcript: spokenText });
-          setResponse(res.data.response || "Command processed!");
-          speak(res.data.response);
+          const res = await processVoiceCommand({ transcript: finalText });
 
-          // Reload page after adding expense
-          if (res.data.action === "add_expense") {
-            setTimeout(() => window.location.reload(), 2000);
+          const reply =
+            res?.data?.response || "Sorry, I didn’t understand that.";
+          const lang = res?.data?.lang || "en"; // from backend "hi" or "en"
+
+          addMessage("assistant", reply);
+          speak(reply, lang);
+
+          // If an expense was added → refresh UI
+          if (res?.data?.action === "add_expense") {
+            setTimeout(() => window.location.reload(), 1500);
           }
-        } catch (error) {
-          setResponse("Sorry, I could not process that command.");
-          speak("Sorry, I could not process that command.");
+        } catch (err) {
+          addMessage("assistant", "Error processing your request.");
+          speak("Error processing your request.", "en");
         }
 
         setIsListening(false);
       };
 
-      recognitionInstance.onerror = (event) => {
-        console.error("Speech recognition error:", event.error);
-        setIsListening(false);
-        setResponse("Error: " + event.error);
-      };
-
-      recognitionInstance.onend = () => {
-        setIsListening(false);
-      };
-
-      setRecognition(recognitionInstance);
+      rec.onerror = () => setIsListening(false);
+      rec.onend = () => setIsListening(false);
+      setRecognition(rec);
     }
   }, []);
 
-  const speak = (text) => {
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-IN";
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
-    }
+  // ✅ Add chat messages
+  const addMessage = (role, text) => {
+    setMessages((prev) => [...prev, { role, text }]);
   };
 
-  const startListening = () => {
-    if (recognition) {
-      setTranscript("");
-      setResponse("");
+  // ✅ Smart voice output with Hindi/English auto voice selection
+  const speak = (text, lang = "en") => {
+    if (!("speechSynthesis" in window)) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang === "hi" ? "hi-IN" : "en-IN";
+    utterance.rate = 0.95;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
+
+  // ✅ Start / Stop mic
+  const toggleListening = () => {
+    if (!recognition) return;
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+    } else {
+      window.speechSynthesis.cancel();
+      setLiveText("");
       setIsListening(true);
       recognition.start();
     }
   };
 
-  const stopListening = () => {
-    if (recognition) {
-      recognition.stop();
-      setIsListening(false);
-    }
-  };
-
-  if (!recognition) {
-    return null; // Browser doesn't support speech recognition
-  }
+  if (!recognition) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="va-root fixed bottom-6 right-6 z-50">
+      {(isListening || messages.length > 0) && (
+        <div className="va-panel">
+          <div className="va-header">
+            <div className="va-title">Assistant</div>
+            <div className={`va-dot ${isListening ? "active" : ""}`} />
+          </div>
+
+          <div className="va-body">
+            {messages.slice(-5).map((m, index) => (
+              <div
+                key={index}
+                className={`va-bubble ${
+                  m.role === "user" ? "user" : "assistant"
+                }`}
+              >
+                {m.text}
+              </div>
+            ))}
+
+            {isListening && (
+              <div className="va-wave">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            )}
+
+            {liveText && <div className="va-bubble user live">{liveText}</div>}
+          </div>
+        </div>
+      )}
+
       <button
-        className={`flex items-center justify-center size-12 rounded-full bg-primary text-white shadow-lg hover:bg-primary-dark transition-colors ${
-          isListening ? "animate-pulse ring-4 ring-primary/30" : ""
-        }`}
-        onClick={isListening ? stopListening : startListening}
+        onClick={toggleListening}
+        className={`va-mic ${isListening ? "active" : ""}`}
         title="Voice Assistant"
       >
         <span className="material-symbols-outlined">
           {isListening ? "mic" : "mic_none"}
         </span>
       </button>
-
-      {(isListening || transcript || response) && (
-        <div className="absolute bottom-full right-0 mb-4 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 border border-gray-200 dark:border-gray-700">
-          {isListening && (
-            <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-              <div className="relative">
-                <span className="absolute inset-0 animate-ping rounded-full bg-primary/30"></span>
-                <span className="relative block size-2 rounded-full bg-primary"></span>
-              </div>
-              <p className="text-sm font-medium">Listening...</p>
-            </div>
-          )}
-          {transcript && (
-            <div className="mt-3">
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
-                You said:
-              </p>
-              <p className="text-sm text-gray-900 dark:text-white">
-                {transcript}
-              </p>
-            </div>
-          )}
-          {response && (
-            <div className="mt-3">
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
-                Response:
-              </p>
-              <p className="text-sm text-gray-900 dark:text-white">
-                {response}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
     </div>
   );
 };

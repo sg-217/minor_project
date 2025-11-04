@@ -55,7 +55,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 ml-5">
       {/* Page Header */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex min-w-72 flex-col gap-2">
