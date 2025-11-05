@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../services/api";
 import { AuthContext } from "../context/AuthContext";
+import FormInput from "../components/FormInput"; // Import the new component
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -53,6 +54,7 @@ const Register = () => {
       <header className="absolute top-0 left-0 right-0 flex items-center justify-between p-6 lg:px-10 lg:py-8">
         <div className="flex items-center gap-3 text-slate-800 dark:text-white">
           <div className="h-6 w-6 text-primary">
+            {/* SVG Logo */}
             <svg
               fill="currentColor"
               viewBox="0 0 48 48"
@@ -83,9 +85,9 @@ const Register = () => {
         </div>
       </header>
 
-      <main className="flex w-full max-w-6xl flex-1 items-center justify-center">
+      <main className="flex w-full max-w-6xl flex-1 items-center justify-center py-16 sm:py-24">
         <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="flex flex-col justify-center space-y-8 px-4">
+          <div className="flex w-full flex-col justify-center space-y-8 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 sm:p-8 lg:w-auto lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
             <div>
               <div className="flex min-w-72 flex-col gap-2">
                 <p className="text-3xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white md:text-4xl">
@@ -97,19 +99,7 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium leading-normal text-slate-600 dark:text-slate-300">
-                  Step 1 of 3
-                </p>
-              </div>
-              <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-700">
-                <div
-                  className="h-2 rounded-full bg-primary"
-                  style={{ width: "33%" }}
-                ></div>
-              </div>
-            </div>
+            {/* "Step 1 of 3" and progress bar are REMOVED */}
 
             {error && (
               <div className="rounded-lg bg-red-50 p-4 text-sm text-red-500 dark:bg-red-900/10 dark:text-red-400">
@@ -119,62 +109,43 @@ const Register = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
-                <label className="flex flex-col">
-                  <p className="pb-2 text-sm font-medium leading-normal text-slate-800 dark:text-slate-200">
-                    Full Name
-                  </p>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded-lg border border-slate-300 bg-transparent px-4 py-2.5 text-base font-normal leading-normal text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-primary"
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </label>
-                <label className="flex flex-col">
-                  <p className="pb-2 text-sm font-medium leading-normal text-slate-800 dark:text-slate-200">
-                    Email Address
-                  </p>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded-lg border border-slate-300 bg-transparent px-4 py-2.5 text-base font-normal leading-normal text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-primary"
-                    placeholder="Enter your email address"
-                    required
-                  />
-                </label>
-                <label className="flex flex-col">
-                  <p className="pb-2 text-sm font-medium leading-normal text-slate-800 dark:text-slate-200">
-                    Password
-                  </p>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded-lg border border-slate-300 bg-transparent px-4 py-2.5 text-base font-normal leading-normal text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-primary"
-                    placeholder="Create a password"
-                    required
-                  />
-                </label>
-                <label className="flex flex-col">
-                  <p className="pb-2 text-sm font-medium leading-normal text-slate-800 dark:text-slate-200">
-                    Confirm Password
-                  </p>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    value={formData.confirmPassword}
-                    onChange={handleChange}
-                    className="form-input h-12 w-full flex-1 resize-none overflow-hidden rounded-lg border border-slate-300 bg-transparent px-4 py-2.5 text-base font-normal leading-normal text-slate-900 placeholder:text-slate-400 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 dark:border-slate-700 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-primary"
-                    placeholder="Confirm your password"
-                    required
-                  />
-                </label>
+                {/* Replaced old labels/inputs with the new component */}
+                <FormInput
+                  label="Full Name"
+                  name="name"
+                  type="text"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Enter your full name"
+                  required
+                />
+                <FormInput
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email address"
+                  required
+                />
+                <FormInput
+                  label="Password"
+                  name="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Create a password"
+                  required
+                />
+                <FormInput
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  placeholder="Confirm your password"
+                  required
+                />
               </div>
 
               <div className="flex items-start">
@@ -207,7 +178,7 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-white shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Creating account..." : "Create My Free Account"}
               </button>

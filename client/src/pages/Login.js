@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/api";
 import { AuthContext } from "../context/AuthContext";
+import FormInput from "../components/FormInput";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -61,12 +62,13 @@ const Login = () => {
                 PocketPilot
               </h2>
             </div>
-            <Link
+            {/* <Link
               to="/register"
-              className="flex min-w-[84px] max-w-[480px] items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-transparent text-neutral-dark-gray dark:text-white text-sm font-bold leading-normal tracking-[0.015em] border border-neutral-dark-gray/20 dark:border-white/20 hover:bg-neutral-dark-gray/5 dark:hover:bg-white/5 transition-colors"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
             >
-              <span className="truncate">Sign Up</span>
-            </Link>
+              Don't have an account?{" "}
+              <span className="font-bold text-primary">Sign Up</span>
+            </Link> */}
           </div>
         </header>
 
@@ -99,15 +101,13 @@ const Login = () => {
                   <h2 className="text-3xl font-bold text-neutral-dark-gray dark:text-white">
                     Log in to your account
                   </h2>
-                  <p className="mt-2 text-sm text-neutral-dark-gray/70 dark:text-white/70">
-                    Don't have an account?{" "}
-                    <Link
-                      to="/register"
-                      className="font-medium text-action-primary hover:underline"
-                    >
-                      Sign up
-                    </Link>
-                  </p>
+                   <Link
+              to="/register"
+              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            >
+              Don't have an account?{" "}
+              <span className="font-bold text-primary">Sign Up</span>
+            </Link>
                 </div>
 
                 {error && (
@@ -117,62 +117,31 @@ const Login = () => {
                 )}
 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="flex flex-col">
-                      <p className="text-sm font-medium leading-normal pb-2 text-neutral-dark-gray dark:text-white">
-                        Email Address
-                      </p>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-neutral-dark-gray dark:text-white focus:outline-0 focus:ring-2 focus:ring-action-primary focus:ring-opacity-50 border border-neutral-light-gray dark:border-[#3b4354] bg-neutral-light-gray dark:bg-[#1c1f27] h-12 placeholder:text-neutral-dark-gray/50 dark:placeholder:text-[#9da6b9] px-4 text-base font-normal leading-normal transition-shadow"
-                        placeholder="you@example.com"
-                        required
-                      />
-                    </label>
-                  </div>
+                    <FormInput
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Enter your email address"
+                  required
+                />
 
-                  <div>
-                    <label className="flex flex-col">
-                      <div className="flex justify-between items-center">
-                        <p className="text-sm font-medium leading-normal pb-2 text-neutral-dark-gray dark:text-white">
-                          Password
-                        </p>
-                        <Link
-                          to="/forgot-password"
-                          className="text-sm font-medium text-action-primary hover:underline"
-                        >
-                          Forgot password?
-                        </Link>
-                      </div>
-                      <div className="flex w-full flex-1 items-stretch rounded-lg">
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          name="password"
-                          value={formData.password}
-                          onChange={handleChange}
-                          className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-neutral-dark-gray dark:text-white focus:outline-0 focus:ring-2 focus:ring-action-primary focus:ring-opacity-50 border border-neutral-light-gray dark:border-[#3b4354] bg-neutral-light-gray dark:bg-[#1c1f27] h-12 placeholder:text-neutral-dark-gray/50 dark:placeholder:text-[#9da6b9] p-4 border-r-0 pr-2 text-base font-normal leading-normal transition-shadow"
-                          placeholder="Enter your password"
-                          required
-                        />
-                        <div
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="text-neutral-dark-gray/60 dark:text-[#9da6b9] flex border border-neutral-light-gray dark:border-[#3b4354] bg-neutral-light-gray dark:bg-[#1c1f27] items-center justify-center pr-3 rounded-r-lg border-l-0 cursor-pointer"
-                        >
-                          <span className="material-symbols-outlined text-xl">
-                            {showPassword ? "visibility_off" : "visibility"}
-                          </span>
-                        </div>
-                      </div>
-                    </label>
-                  </div>
+                  {/* Using the reusable component for password */}
+                  <FormInput
+                    label="Password"
+                    name="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder="Enter your password"
+                    required
+                  />
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex min-w-[84px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-action-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-action-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-action-primary dark:focus:ring-offset-background-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="truncate">
                       {loading ? "Logging in..." : "Log In"}

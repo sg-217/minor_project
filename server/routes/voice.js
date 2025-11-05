@@ -38,9 +38,8 @@ router.post("/command", auth, async (req, res) => {
         const expense = await addExpenseFromVoice(req.user._id, parsed.data);
         const msg =
           lang === "hi"
-            ? `₹${fmt(expense.amount)} ${
-                expense.category
-              } ke liye jod diya gaya.`
+            ? `₹${fmt(expense.amount)} ${expense.category
+            } ke liye jod diya gaya.`
             : `Added ₹${fmt(expense.amount)} for ${expense.category}.`;
         return res.json({
           success: true,
@@ -88,23 +87,21 @@ router.post("/command", auth, async (req, res) => {
         const msg = bex
           ? lang === "hi"
             ? `${timePhraseHi(
-                parsed.data.period,
-                parsed.data.which
-              )} aapka sabse bada kharcha ₹${fmt(bex.amount)} ${
-                bex.category
-              } par hua${bex.description ? ` (${bex.description})` : ""}.`
+              parsed.data.period,
+              parsed.data.which
+            )} aapka sabse bada kharcha ₹${fmt(bex.amount)} ${bex.category
+            } par hua${bex.description ? ` (${bex.description})` : ""}.`
             : `Your biggest expense ${timePhraseEn(
-                parsed.data.period,
-                parsed.data.which
-              )} is ₹${fmt(bex.amount)} on ${bex.category}${
-                bex.description ? ` (${bex.description})` : ""
-              }.`
+              parsed.data.period,
+              parsed.data.which
+            )} is ₹${fmt(bex.amount)} on ${bex.category}${bex.description ? ` (${bex.description})` : ""
+            }.`
           : lang === "hi"
-          ? `${timePhraseHi(
+            ? `${timePhraseHi(
               parsed.data.period,
               parsed.data.which
             )} koi kharcha nahi mila.`
-          : `No expenses found ${timePhraseEn(
+            : `No expenses found ${timePhraseEn(
               parsed.data.period,
               parsed.data.which
             )}.`;
@@ -126,27 +123,26 @@ router.post("/command", auth, async (req, res) => {
         );
         const msg = tc.length
           ? lang === "hi"
-            ? `${timePhraseHi(parsed.data.period, parsed.data.which)} top ${
-                tc.length
-              } categories: ` +
-              tc
-                .map(([cat, amt], i) => `${i + 1}. ${cat} ₹${fmt(amt)}`)
-                .join(", ") +
-              "."
+            ? `${timePhraseHi(parsed.data.period, parsed.data.which)} top ${tc.length
+            } categories: ` +
+            tc
+              .map(([cat, amt], i) => `${i + 1}. ${cat} ₹${fmt(amt)}`)
+              .join(", ") +
+            "."
             : `Top ${tc.length} categories ${timePhraseEn(
-                parsed.data.period,
-                parsed.data.which
-              )}: ` +
-              tc
-                .map(([cat, amt], i) => `${i + 1}. ${cat} ₹${fmt(amt)}`)
-                .join(", ") +
-              "."
+              parsed.data.period,
+              parsed.data.which
+            )}: ` +
+            tc
+              .map(([cat, amt], i) => `${i + 1}. ${cat} ₹${fmt(amt)}`)
+              .join(", ") +
+            "."
           : lang === "hi"
-          ? `${timePhraseHi(
+            ? `${timePhraseHi(
               parsed.data.period,
               parsed.data.which
             )} koi spending nahi mili.`
-          : `No spending found ${timePhraseEn(
+            : `No spending found ${timePhraseEn(
               parsed.data.period,
               parsed.data.which
             )}.`;
@@ -168,8 +164,8 @@ router.post("/command", auth, async (req, res) => {
         const msg = sv
           ? generateSavingsResponse(sv, lang)
           : lang === "hi"
-          ? `Aapki income/budget settings nahi mili. Kripya monthly income set karein.`
-          : `I couldn't find your income/budget settings. Please set your monthly income.`;
+            ? `Aapki income/budget settings nahi mili. Kripya monthly income set karein.`
+            : `I couldn't find your income/budget settings. Please set your monthly income.`;
         return res.json({
           success: true,
           action: "savings",
@@ -187,24 +183,24 @@ router.post("/command", auth, async (req, res) => {
         const msg = list.length
           ? lang === "hi"
             ? `Aakhri ${list.length} kharche: ` +
-              list
-                .map(
-                  (e) =>
-                    `₹${fmt(e.amount)} ${e.category} (${shortDate(e.date)})`
-                )
-                .join(", ") +
-              "."
+            list
+              .map(
+                (e) =>
+                  `₹${fmt(e.amount)} ${e.category} (${shortDate(e.date)})`
+              )
+              .join(", ") +
+            "."
             : `Last ${list.length} expenses: ` +
-              list
-                .map(
-                  (e) =>
-                    `₹${fmt(e.amount)} ${e.category} (${shortDate(e.date)})`
-                )
-                .join(", ") +
-              "."
+            list
+              .map(
+                (e) =>
+                  `₹${fmt(e.amount)} ${e.category} (${shortDate(e.date)})`
+              )
+              .join(", ") +
+            "."
           : lang === "hi"
-          ? `Koi recent expense nahi mila.`
-          : `No recent expenses found.`;
+            ? `Koi recent expense nahi mila.`
+            : `No recent expenses found.`;
         return res.json({
           success: true,
           action: "last_expenses",
@@ -238,11 +234,11 @@ router.post("/command", auth, async (req, res) => {
         const msg =
           lang === "hi"
             ? `${periodHi(parsed.data.period)} ka aapka ausat kharcha ₹${fmt(
-                avg.average
-              )} hai.`
+              avg.average
+            )} hai.`
             : `Your average ${parsed.data.period} spending is ₹${fmt(
-                avg.average
-              )}.`;
+              avg.average
+            )}.`;
         return res.json({
           success: true,
           action: "avg_spending",
@@ -378,8 +374,8 @@ function parseVoiceCommand(transcript) {
           catTime[4] === "haftे" || catTime[4] === "week"
             ? "week"
             : catTime[4] === "saal"
-            ? "year"
-            : "month",
+              ? "year"
+              : "month",
         which: /pichhle|last/.test(lower) ? "last" : "this",
       },
     };
@@ -512,10 +508,10 @@ function periodHi(period) {
   return period === "day"
     ? "din"
     : period === "week"
-    ? "hafte"
-    : period === "year"
-    ? "saal"
-    : "mahine";
+      ? "hafte"
+      : period === "year"
+        ? "saal"
+        : "mahine";
 }
 
 function shortDate(d) {
@@ -804,23 +800,23 @@ function generateSpendingResponse(data, lang = "en") {
   if (count === 0) {
     return lang === "hi"
       ? `${timePhraseHi(
-          period,
-          which
-        )} ${readableCat} par koi kharcha nahi mila.`
+        period,
+        which
+      )} ${readableCat} par koi kharcha nahi mila.`
       : `You haven't spent anything on ${readableCat} ${timePhraseEn(
-          period,
-          which
-        )}.`;
+        period,
+        which
+      )}.`;
   }
 
   return lang === "hi"
     ? `${timePhraseHi(period, which)} aapne ${readableCat} par ₹${fmt(
-        total
-      )} kharch kiye, kul ${count} transaction${count > 1 ? "s" : ""}.`
+      total
+    )} kharch kiye, kul ${count} transaction${count > 1 ? "s" : ""}.`
     : `You spent ₹${fmt(total)} on ${readableCat} ${timePhraseEn(
-        period,
-        which
-      )} across ${count} transaction${count > 1 ? "s" : ""}.`;
+      period,
+      which
+    )} across ${count} transaction${count > 1 ? "s" : ""}.`;
 }
 
 function generateSummaryResponse(summary, lang = "en") {
@@ -855,12 +851,11 @@ function generateSavingsResponse(sv, lang = "en") {
     )}.)`;
   }
 
-  return `${cap(timePhraseEn(sv.period, sv.which))}, you ${
-    signSaved ? "saved" : "overspent by"
-  } ₹${fmt(Math.abs(sv.savings))}.
+  return `${cap(timePhraseEn(sv.period, sv.which))}, you ${signSaved ? "saved" : "overspent by"
+    } ₹${fmt(Math.abs(sv.savings))}.
 (Baseline ${sv.baselineType}: ₹${fmt(sv.effectiveIncome)}, Expenses: ₹${fmt(
-    sv.totalExpenses
-  )}.)`;
+      sv.totalExpenses
+    )}.)`;
 }
 
 function generateCompareResponse(cmp, lang = "en") {
