@@ -1,4 +1,22 @@
 // services/ocr.js
+/**
+ * OCR Service - Receipt Processing using Mindee API
+ * 
+ * This service provides enterprise-grade OCR capabilities for extracting
+ * structured data from receipt images using the Mindee API.
+ * 
+ * Features:
+ * - Automatic text extraction from receipts (JPG, PNG, PDF)
+ * - Image preprocessing for enhanced accuracy
+ * - Structured data extraction (amount, date, vendor, category)
+ * - High accuracy with machine learning models
+ * 
+ * Requirements:
+ * - MINDEE_API_KEY: API key from https://platform.mindee.com/
+ * - MINDEE_MODEL_ID: (Optional) Custom model ID or default receipt OCR
+ * 
+ * @module services/ocr
+ */
 
 const mindee = require("mindee");
 const sharp = require("sharp");
@@ -143,20 +161,6 @@ class OCRService {
 
     return outputPath;
   }
-
-  /**
-   * Dummy text extraction logic (optional)
-   */
-  // extractReceiptData(rawText) {
-  //   // Example placeholder extraction — replace with your logic
-  //   const totalMatch = rawText.match(/total\s*[:\-]?\s*\$?\s*(\d+(\.\d{2})?)/i);
-  //   const dateMatch = rawText.match(/\d{2,4}[\/\-]\d{1,2}[\/\-]\d{1,2}/);
-
-  //   return {
-  //     total: totalMatch ? totalMatch[1] : null,
-  //     date: dateMatch ? dateMatch[0] : null,
-  //   };
-  // }
 }
 
 module.exports = new OCRService();

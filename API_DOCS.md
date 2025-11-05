@@ -103,9 +103,12 @@ Response:
     "amount": 500,
     "date": "2024-10-14",
     "vendor": "Store Name",
-    "confidence": 85
+    "category": "food"
   }
 }
+
+Note: Uses Mindee API for enterprise-grade OCR processing.
+Supports JPG, PNG, and PDF formats.
 ```
 
 ### Get All Expenses

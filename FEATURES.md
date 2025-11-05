@@ -4,16 +4,17 @@
 
 ### 1. OCR Receipt Scanning
 
-**Technology:** Tesseract.js
+**Technology:** Mindee API
 
 **How it works:**
 1. User uploads receipt image (JPG/PNG/PDF)
 2. Image is preprocessed for better accuracy (grayscale, sharpen, normalize)
-3. OCR extracts text from image
+3. Mindee API processes the image with advanced machine learning models
 4. Smart parser extracts:
    - Amount (multiple patterns for ₹, Rs, rupees)
    - Date (various formats)
-   - Vendor name (from top of receipt)
+   - Vendor name (supplier/merchant information)
+   - Category suggestions
    - Line items with prices
 
 **Usage:**
@@ -25,6 +26,7 @@
 - Use clear, well-lit photos
 - Ensure receipt is flat and readable
 - Avoid shadows and reflections
+- Mindee API provides enterprise-grade accuracy
 
 ### 2. Smart Categorization (ML + NLP)
 

@@ -35,7 +35,7 @@ Upload a receipt photo, and PocketPilot automatically extracts:
 - Vendor name
 - Line items
 
-**Technology:** Tesseract.js with image preprocessing
+**Technology:** Mindee API with advanced image preprocessing
 
 ### 🤖 Smart Categorization (AI-Powered)
 Goes beyond simple keyword matching with NLP:
@@ -158,7 +158,7 @@ Comprehensive guides available:
 - **JWT** - Authentication
 
 ### AI/ML
-- **Tesseract.js** - OCR engine
+- **Mindee API** - Enterprise-grade OCR engine
 - **Natural** - NLP toolkit
 - **Compromise** - Text processing
 - **Sharp** - Image processing
@@ -241,7 +241,7 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.
 Master these skills:
 - ✅ Full-stack MERN development
 - ✅ AI/ML integration
-- ✅ OCR and NLP implementation
+- ✅ Enterprise OCR implementation
 - ✅ JWT authentication
 - ✅ RESTful API design
 - ✅ React hooks & context
@@ -255,7 +255,7 @@ Master these skills:
 ### What Makes It Special?
 
 1. **Real AI** - Not just buzzwords, actual working ML
-2. **100% Free** - No paid APIs or services
+2. **Enterprise OCR** - Professional-grade receipt scanning
 3. **Production Ready** - Enterprise-grade code
 4. **Well Documented** - 7 comprehensive guides
 5. **Modern Stack** - Latest technologies
@@ -265,7 +265,7 @@ Master these skills:
 
 | Feature | PocketPilot | Others |
 |---------|-------------|--------|
-| OCR Scanning | ✅ Free | ❌ Paid API |
+| OCR Scanning | ✅ Enterprise API | ❌ Basic/Paid |
 | AI Categorization | ✅ Smart NLP | ❌ Basic keywords |
 | Predictions | ✅ Advanced | ❌ Simple average |
 | Voice Assistant | ✅ Free | ❌ Not available |
@@ -313,7 +313,7 @@ Built with ❤️ for smart financial management
 ## 🙏 Acknowledgments
 
 Special thanks to:
-- Tesseract.js for OCR
+- Mindee for enterprise-grade OCR API
 - Natural & Compromise for NLP
 - MongoDB for database
 - React team for amazing framework

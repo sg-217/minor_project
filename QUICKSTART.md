@@ -33,7 +33,18 @@ MONGO_URI=mongodb://localhost:27017/pocketpilot
 JWT_SECRET=my_super_secret_key_12345
 JWT_EXPIRE=30d
 CLIENT_URL=http://localhost:3000
+
+# Mindee API Configuration (Required for OCR)
+MINDEE_API_KEY=your_mindee_api_key_here
+MINDEE_MODEL_ID=your_model_id_or_leave_empty_for_default
 ```
+
+**Get Mindee API Key:**
+1. Go to https://platform.mindee.com/
+2. Sign up for a free account
+3. Create a new API key in the dashboard
+4. Copy the API key and paste it in `.env`
+5. (Optional) Create a custom model or use the default receipt OCR model
 
 **Using MongoDB Atlas (Cloud - Recommended):**
 1. Go to https://www.mongodb.com/cloud/atlas
@@ -178,9 +189,13 @@ lsof -ti:5000 | xargs kill
 - Check browser console for errors
 
 ### OCR not processing
+- Check Mindee API key is set correctly in .env
+- Verify API key is valid and active
+- Check Mindee account quota/limits
 - Check image file size (<10MB)
 - Use clear, well-lit images
 - Supported formats: JPG, PNG, PDF
+- Check server logs for Mindee API errors
 
 ### Frontend build errors
 ```bash
@@ -266,7 +281,7 @@ After registering, try:
 ## What's Included?
 
 ✅ Full MERN stack application
-✅ OCR receipt scanning (Tesseract.js)
+✅ OCR receipt scanning (Mindee API)
 ✅ Smart AI categorization (Natural + Compromise)
 ✅ Predictive analytics
 ✅ Goal-based budgeting
@@ -275,8 +290,6 @@ After registering, try:
 ✅ Production-ready code
 ✅ Security features
 ✅ Comprehensive documentation
-
-All using **FREE** and **open-source** technologies! 🎉
 
 ---
 

@@ -7,13 +7,13 @@
 ## ✨ Key Features Implemented
 
 ### 1. 📷 OCR Receipt Scanning
-- **Technology:** Tesseract.js
+- **Technology:** Mindee API
 - **Capabilities:**
   - Automatic text extraction from receipt images
-  - Smart parsing of amount, date, vendor, and items
+  - Smart parsing of amount, date, vendor, and category
   - Image preprocessing for enhanced accuracy
   - Support for JPG, PNG, PDF formats
-  - Confidence scoring
+  - Enterprise-grade accuracy with machine learning models
 
 ### 2. 🤖 Smart AI Categorization
 - **Technology:** Natural.js + Compromise.js
@@ -70,7 +70,7 @@
 - bcrypt (password hashing)
 
 ### AI/ML
-- Tesseract.js (OCR)
+- Mindee API (OCR)
 - Natural (NLP)
 - Compromise (text processing)
 - Sharp (image processing)
@@ -167,7 +167,7 @@ PocketPilot/
 
 ## 💡 Unique Selling Points
 
-1. **100% Free Technologies** - No paid APIs or subscriptions
+1. **Enterprise OCR** - Professional-grade receipt scanning with Mindee API
 2. **Production-Level Code** - Enterprise-grade architecture
 3. **AI-Powered** - Not just a CRUD app
 4. **Complete Solution** - All features integrated
@@ -180,7 +180,7 @@ PocketPilot/
 This project demonstrates:
 - Full-stack MERN development
 - AI/ML integration in web apps
-- NLP and OCR implementation
+- Enterprise OCR implementation with Mindee API
 - JWT authentication
 - RESTful API design
 - React hooks and context
@@ -303,7 +303,7 @@ Perfect for:
 - RESTful APIs
 
 **AI/ML:**
-- Tesseract.js (OCR)
+- Mindee API (OCR)
 - Natural (NLP)
 - Text processing
 - Pattern recognition

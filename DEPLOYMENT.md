@@ -26,7 +26,16 @@ MONGO_URI=mongodb://localhost:27017/pocketpilot
 JWT_SECRET=your_super_secret_jwt_key_change_in_production
 JWT_EXPIRE=30d
 CLIENT_URL=http://localhost:3000
+
+# Mindee API Configuration (Required for OCR)
+MINDEE_API_KEY=your_mindee_api_key_here
+MINDEE_MODEL_ID=your_model_id_or_leave_empty_for_default
 ```
+
+**Get Mindee API Key:**
+- Sign up at https://platform.mindee.com/
+- Create API key in dashboard
+- Add to `.env` file
 
 ### 3. Start MongoDB
 
@@ -69,6 +78,8 @@ heroku config:set NODE_ENV=production
 heroku config:set MONGO_URI=your_mongodb_atlas_uri
 heroku config:set JWT_SECRET=your_production_secret
 heroku config:set CLIENT_URL=https://pocketpilot-app.herokuapp.com
+heroku config:set MINDEE_API_KEY=your_mindee_api_key
+heroku config:set MINDEE_MODEL_ID=your_model_id_optional
 ```
 
 4. **Deploy**
@@ -114,6 +125,16 @@ npm run install-all
 ```
 
 4. **Create .env file with production values**
+
+```env
+NODE_ENV=production
+PORT=5000
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_production_secret
+CLIENT_URL=https://yourdomain.com
+MINDEE_API_KEY=your_mindee_api_key
+MINDEE_MODEL_ID=your_model_id_optional
+```
 
 5. **Build frontend**
 ```bash
@@ -183,6 +204,8 @@ services:
     environment:
       - MONGO_URI=mongodb://mongo:27017/pocketpilot
       - JWT_SECRET=your_secret
+      - MINDEE_API_KEY=your_mindee_api_key
+      - MINDEE_MODEL_ID=your_model_id_optional
     depends_on:
       - mongo
   

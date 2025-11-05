@@ -47,7 +47,7 @@ PocketPilot is a full-stack MERN (MongoDB, Express, React, Node.js) application 
 │                    SERVICE LAYER (AI/ML)                     │
 │  ┌───────────────┐  ┌──────────────┐  ┌─────────────────┐  │
 │  │      OCR      │  │Categorization│  │   Prediction    │  │
-│  │ (Tesseract.js)│  │(Natural+NLP) │  │  (Time Series)  │  │
+│  │  (Mindee API) │  │(Natural+NLP) │  │  (Time Series)  │  │
 │  └───────────────┘  └──────────────┘  └─────────────────┘  │
 │  ┌───────────────┐  ┌──────────────┐  ┌─────────────────┐  │
 │  │ Image Process │  │Voice Command │  │Budget Algorithm │  │
@@ -94,7 +94,7 @@ PocketPilot is a full-stack MERN (MongoDB, Express, React, Node.js) application 
 - **bcrypt**: Password hashing
 
 ### AI/ML Libraries
-- **Tesseract.js**: OCR engine
+- **Mindee API**: Enterprise-grade OCR engine
 - **Natural**: NLP toolkit
 - **Compromise**: Text processing
 - **Sharp**: Image processing
@@ -176,22 +176,23 @@ Index: { user: 1, status: 1 }
 
 **Process Flow:**
 ```
-Image Upload → Preprocessing → OCR → Data Extraction → Validation
+Image Upload → Preprocessing → Mindee API Processing → Data Extraction → Validation
 ```
 
 **Techniques:**
-- Grayscale conversion
-- Normalization
-- Sharpening
-- Resolution adjustment
+- Grayscale conversion (Sharp)
+- Normalization (Sharp)
+- Sharpening (Sharp)
+- Resolution adjustment (Sharp)
+- Mindee API machine learning models
 - Pattern matching (regex)
 
 **Output:**
 - Amount (with currency detection)
 - Date (multiple formats)
-- Vendor name
-- Line items
-- Confidence score
+- Vendor name (supplier/merchant)
+- Category suggestions
+- High accuracy with enterprise-grade OCR
 
 ### 2. Categorization Service (categorization.js)
 
