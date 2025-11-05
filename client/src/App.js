@@ -52,7 +52,7 @@ function App() {
               }
             >
               <Route index element={<Dashboard />} />
-              <Route path="expenses" element={<Expenses />} />
+              <Route path="expenses/*" element={<Expenses />} />
               <Route path="goals" element={<Goals />} />
               <Route path="analytics" element={<Analytics />} />
             </Route>
