@@ -143,8 +143,8 @@ const Dashboard = () => {
           </h2>
 
           <div className="overflow-x-auto -mx-4 sm:mx-0">
-            <div className="inline-block min-w-full align-middle">
-              <div className="overflow-hidden sm:rounded-xl bg-white dark:bg-[#1c1f27]">
+            <div className="inline-block min-w-full p-4 md:p-0 align-middle">
+              <div className="overflow-hidden rounded-xl bg-white dark:bg-[#1c1f27]">
                 <table className="min-w-full">
                   <thead className="bg-gray-50 dark:bg-[#282e39]">
                     <tr>
