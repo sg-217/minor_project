@@ -95,11 +95,11 @@ const VoiceAssistant = () => {
   if (!recognition) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50">
       {(isListening || messages.length > 0) && (
-        <div className="w-[340px] max-h-[60vh] overflow-hidden mb-3 backdrop-blur-md bg-gray-900/70 border border-white/[0.08] shadow-2xl rounded-2xl text-gray-200">
-          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/[0.06]">
-            <div className="font-bold tracking-wide">Assistant</div>
+        <div className="w-[90vw] sm:w-[340px] max-w-[340px] max-h-[60vh] overflow-hidden mb-3 backdrop-blur-md bg-gray-900/70 border border-white/[0.08] shadow-2xl rounded-2xl text-gray-200">
+          <div className="flex items-center justify-between px-3 sm:px-3.5 py-2 sm:py-2.5 border-b border-white/[0.06]">
+            <div className="font-bold tracking-wide text-sm sm:text-base">Assistant</div>
             <div className={`w-2.5 h-2.5 rounded-full transition-all ${
               isListening 
                 ? 'bg-green-500 shadow-[0_0_0_6px_rgba(34,197,94,0.12)]' 
@@ -107,11 +107,11 @@ const VoiceAssistant = () => {
             }`} />
           </div>
 
-          <div className="p-3 flex flex-col gap-2.5 max-h-[45vh] overflow-auto">
+          <div className="p-2.5 sm:p-3 flex flex-col gap-2.5 max-h-[45vh] overflow-auto">
             {messages.slice(-5).map((m, index) => (
               <div
                 key={index}
-                className={`rounded-xl px-3 py-2.5 text-sm leading-5 border ${
+                className={`rounded-xl px-2.5 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm leading-5 border ${
                   m.role === "user"
                     ? "self-end bg-blue-500/15 border-blue-500/25"
                     : "self-start bg-white/5 border-white/[0.06]"
@@ -122,7 +122,7 @@ const VoiceAssistant = () => {
             ))}
 
             {isListening && (
-              <div className="flex items-end gap-1 h-7 my-1">
+              <div className="flex items-end gap-1 h-6 sm:h-7 my-1">
                 <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave"></span>
                 <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.1s]"></span>
                 <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.2s]"></span>
@@ -132,7 +132,7 @@ const VoiceAssistant = () => {
             )}
 
             {liveText && (
-              <div className="self-end rounded-xl px-3 py-2.5 text-sm leading-5 bg-blue-500/15 border border-blue-500/25 opacity-85">
+              <div className="self-end rounded-xl px-2.5 sm:px-3 py-2 sm:py-2.5 text-xs sm:text-sm leading-5 bg-blue-500/15 border border-blue-500/25 opacity-85">
                 {liveText}
               </div>
             )}
@@ -142,14 +142,14 @@ const VoiceAssistant = () => {
 
       <button
         onClick={toggleListening}
-        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center border-none text-white transition-all ${
+        className={`w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full flex items-center justify-center border-none text-white transition-all ${
           isListening
-            ? 'bg-blue-700 shadow-[0_0_0_10px_rgba(37,99,235,0.18),0_8px_22px_rgba(0,0,0,0.35)]'
-            : 'bg-blue-600 shadow-[0_10px_24px_rgba(37,99,235,0.35)] hover:shadow-[0_12px_26px_rgba(37,99,235,0.45)] hover:-translate-y-0.5'
+            ? 'bg-blue-700 shadow-[0_0_0_8px_rgba(37,99,235,0.18),0_6px_18px_rgba(0,0,0,0.35)] sm:shadow-[0_0_0_10px_rgba(37,99,235,0.18),0_8px_22px_rgba(0,0,0,0.35)]'
+            : 'bg-blue-600 shadow-[0_8px_20px_rgba(37,99,235,0.35)] sm:shadow-[0_10px_24px_rgba(37,99,235,0.35)] hover:shadow-[0_10px_22px_rgba(37,99,235,0.45)] sm:hover:shadow-[0_12px_26px_rgba(37,99,235,0.45)] hover:-translate-y-0.5'
         }`}
         title="Voice Assistant"
       >
-        <span className="material-symbols-outlined">
+        <span className="material-symbols-outlined text-xl sm:text-2xl">
           {isListening ? "mic" : "mic_none"}
         </span>
       </button>

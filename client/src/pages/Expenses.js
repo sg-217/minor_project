@@ -142,22 +142,20 @@ const Expenses = () => {
   }
 
   return (
-    <div className="flex min-h-screen w-full font-display">
-      <main className="flex-1 p-6 lg:p-8">
-        <div className="mx-auto max-w-7xl">
-          {/* Header */}
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-6">
-            <p className="text-4xl font-black leading-tight text-gray-900 dark:text-white">
-              Expenses
-            </p>
-            <div className="flex items-center gap-2">
-              <button
-                className="flex h-10 items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111318] p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-                onClick={() => alert("Voice input feature coming soon!")}
-              >
-                <span className="material-symbols-outlined text-xl">mic</span>
-              </button>
-              <label className="flex h-10 items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111318] p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+    <div className="flex flex-col gap-6 sm:gap-8 -mx-4 sm:-mx-6 lg:-mx-8">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-gray-200 dark:border-gray-800 pb-4 sm:pb-6 px-4 sm:px-6 lg:px-8">
+        <p className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-gray-900 dark:text-white">
+          Expenses
+        </p>
+        <div className="flex items-center gap-2">
+          <button
+            className="flex h-10 items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111318] p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+            onClick={() => alert("Voice input feature coming soon!")}
+          >
+            <span className="material-symbols-outlined text-xl">mic</span>
+          </button>
+          <label className="flex h-10 items-center justify-center rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#111318] p-2 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
                 <span className="material-symbols-outlined text-xl">
                   qr_code_scanner
                 </span>
@@ -171,18 +169,18 @@ const Expenses = () => {
               </label>
               <button
                 onClick={() => setShowModal(true)}
-                className="flex h-10 items-center justify-center gap-2 rounded-lg bg-primary px-4 text-sm font-semibold text-white hover:bg-primary/90"
+                className="flex h-10 items-center justify-center gap-2 rounded-lg bg-primary px-3 sm:px-4 text-sm font-semibold text-white hover:bg-primary/90"
               >
                 <span className="material-symbols-outlined text-xl">add</span>
-                <span>Add Expense</span>
+                <span className="hidden sm:inline">Add Expense</span>
               </button>
             </div>
           </div>
 
           {/* Layout */}
-          <div className="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-12">
-            {/* Left Column */}
-            <div className="lg:col-span-4 xl:col-span-3 space-y-6">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-12 px-4 sm:px-6 lg:px-8">
+            {/* Left Column - Filters */}
+            <div className="lg:col-span-4 xl:col-span-3 space-y-4 sm:space-y-6">
               <div>
                 <label className="flex h-12 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#282e39]">
                   <div className="text-gray-400 dark:text-[#9da6b9] flex items-center justify-center pl-4">
@@ -232,19 +230,19 @@ const Expenses = () => {
               </div>
             </div>
 
-            {/* Right Column */}
-            <div className="lg:col-span-8 xl:col-span-9 space-y-6">
-              <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111318] p-5">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+            {/* Right Column - Expenses List */}
+            <div className="lg:col-span-8 xl:col-span-9 space-y-4 sm:space-y-6">
+              <div className="rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111318] p-4 sm:p-5">
+                <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                   Total Expenses for {format(new Date(), "MMMM")}
                 </p>
-                <p className="mt-1 text-3xl font-bold text-gray-900 dark:text-white">
+                <p className="mt-1 text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
                   ₹{totalExpenses.toLocaleString()}
                 </p>
               </div>
 
               {/* Expense List */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {Object.entries(groupedExpenses).map(([date, dayExpenses]) => (
                   <div key={date}>
                     <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400">
@@ -256,7 +254,7 @@ const Expenses = () => {
                           key={expense._id}
                           className="flex items-center justify-between py-3"
                         >
-                          <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
                             <span
                               className={`block size-2.5 shrink-0 rounded-full ${
                                 categories.find(
@@ -264,8 +262,8 @@ const Expenses = () => {
                                 )?.color || "bg-gray-500"
                               }`}
                             ></span>
-                            <div>
-                              <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
                                 {expense.description ||
                                   expense.vendor ||
                                   "Expense"}
@@ -275,15 +273,15 @@ const Expenses = () => {
                               </p>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3">
-                            <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+                            <p className="text-sm font-semibold text-gray-900 dark:text-white whitespace-nowrap">
                               -₹{expense.amount.toLocaleString()}
                             </p>
                             <button
                               onClick={() => handleDelete(expense._id)}
                               className="text-gray-400 hover:text-red-500 dark:text-gray-500 dark:hover:text-red-400"
                             >
-                              <span className="material-symbols-outlined text-sm">
+                              <span className="material-symbols-outlined text-lg sm:text-sm">
                                 delete
                               </span>
                             </button>
@@ -301,26 +299,24 @@ const Expenses = () => {
               </div>
             </div>
           </div>
-        </div>
-      </main>
 
       {/* Beautiful Tailwind Modal */}
       {showModal && (
         <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50"
+          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm z-50 p-4"
           onClick={() => setShowModal(false)}
         >
           <div
-            className="bg-white dark:bg-[#1f2937] rounded-lg shadow-xl w-full max-w-md p-6"
+            className="bg-white dark:bg-[#1f2937] rounded-lg shadow-xl w-full max-w-md p-4 sm:p-6 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center border-b pb-3">
-              <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
+              <h2 className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">
                 Add Expense
               </h2>
               <button
                 onClick={() => setShowModal(false)}
-                className="text-gray-500 hover:text-red-500"
+                className="text-gray-500 hover:text-red-500 text-2xl"
               >
                 ×
               </button>

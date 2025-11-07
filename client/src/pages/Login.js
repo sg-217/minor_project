@@ -76,7 +76,7 @@ const Login = () => {
         <main className="flex min-h-screen flex-1">
           <div className="flex flex-col lg:flex-row w-full">
             {/* Left Column - Hidden on mobile */}
-            <div className="relative flex-1 hidden lg:flex items-center justify-center bg-gray-100 dark:bg-background-dark/50 p-10">
+            <div className="relative flex-1 hidden lg:flex items-center justify-center bg-gray-100 dark:bg-background-dark/50 p-6 lg:p-10">
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-20"
                 style={{
@@ -84,10 +84,10 @@ const Login = () => {
                 }}
               />
               <div className="relative z-10 max-w-md text-center lg:text-left">
-                <h1 className="text-4xl font-black leading-tight tracking-[-0.033em] text-neutral-dark-gray dark:text-white md:text-5xl">
+                <h1 className="text-3xl lg:text-4xl xl:text-5xl font-black leading-tight tracking-[-0.033em] text-neutral-dark-gray dark:text-white">
                   Welcome Back to PocketPilot
                 </h1>
-                <p className="mt-4 text-lg font-normal leading-normal text-neutral-dark-gray/80 dark:text-white/80">
+                <p className="mt-4 text-base lg:text-lg font-normal leading-normal text-neutral-dark-gray/80 dark:text-white/80">
                   Take control of your finances. Securely access your financial
                   dashboard and continue your journey to financial freedom.
                 </p>
@@ -95,15 +95,15 @@ const Login = () => {
             </div>
 
             {/* Right Column */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 bg-neutral-white dark:bg-background-dark">
-              <div className="w-full max-w-md space-y-8">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-8 lg:p-12 bg-neutral-white dark:bg-background-dark">
+              <div className="w-full max-w-md space-y-6 sm:space-y-8">
                 <div>
-                  <h2 className="text-3xl font-bold text-neutral-dark-gray dark:text-white">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-neutral-dark-gray dark:text-white">
                     Log in to your account
                   </h2>
                    <Link
               to="/register"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+              className="text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white inline-block mt-2"
             >
               Don't have an account?{" "}
               <span className="font-bold text-primary">Sign Up</span>
@@ -111,12 +111,12 @@ const Login = () => {
                 </div>
 
                 {error && (
-                  <div className="p-4 text-sm text-red-600 bg-red-50 dark:bg-red-900/10 dark:text-red-400 rounded-lg">
+                  <div className="p-3 sm:p-4 text-xs sm:text-sm text-red-600 bg-red-50 dark:bg-red-900/10 dark:text-red-400 rounded-lg">
                     {error}
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
                     <FormInput
                   label="Email Address"
                   name="email"
@@ -141,7 +141,7 @@ const Login = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex h-11 sm:h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-sm sm:text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span className="truncate">
                       {loading ? "Logging in..." : "Log In"}

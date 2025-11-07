@@ -55,38 +55,38 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="flex flex-col gap-8 ml-5">
+    <div className="flex flex-col gap-6 sm:gap-8">
       {/* Page Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex min-w-72 flex-col gap-2">
-          <p className="text-gray-900 dark:text-white text-3xl font-bold leading-tight tracking-tight">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+        <div className="flex flex-col gap-2">
+          <p className="text-gray-900 dark:text-white text-2xl sm:text-3xl font-bold leading-tight tracking-tight">
             Welcome Back, {user?.name?.split(" ")[0] || "User"}!
           </p>
-          <p className="text-gray-500 dark:text-[#9da6b9] text-base font-normal leading-normal">
+          <p className="text-gray-500 dark:text-[#9da6b9] text-sm sm:text-base font-normal leading-normal">
             Here's your financial overview for this month.
           </p>
         </div>
         <Link
           to="/expenses/add"
-          className="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-11 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors"
+          className="flex min-w-[84px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-10 sm:h-11 px-4 sm:px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-colors whitespace-nowrap"
         >
-          <span className="material-symbols-outlined text-xl">add</span>
+          <span className="material-symbols-outlined text-lg sm:text-xl">add</span>
           <span className="truncate">Add Expense</span>
         </Link>
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {/* Total Balance */}
-        <div className="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1c1f27]">
-          <p className="text-gray-600 dark:text-[#9da6b9] text-base font-medium leading-normal">
+        <div className="flex flex-1 flex-col gap-2 rounded-xl p-4 sm:p-6 bg-white dark:bg-[#1c1f27]">
+          <p className="text-gray-600 dark:text-[#9da6b9] text-sm sm:text-base font-medium leading-normal">
             Total Balance
           </p>
-          <p className="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">
+          <p className="text-gray-900 dark:text-white tracking-tight text-2xl sm:text-3xl font-bold leading-tight">
             ₹{(summary?.total || 0).toLocaleString()}
           </p>
           <p
-            className={`text-base font-medium leading-normal ${
+            className={`text-sm sm:text-base font-medium leading-normal ${
               comparison?.percentChange >= 0
                 ? "text-[#10B981]"
                 : "text-[#EF4444]"
@@ -98,15 +98,15 @@ const Dashboard = () => {
         </div>
 
         {/* Monthly Expenses */}
-        <div className="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1c1f27]">
-          <p className="text-gray-600 dark:text-[#9da6b9] text-base font-medium leading-normal">
+        <div className="flex flex-1 flex-col gap-2 rounded-xl p-4 sm:p-6 bg-white dark:bg-[#1c1f27]">
+          <p className="text-gray-600 dark:text-[#9da6b9] text-sm sm:text-base font-medium leading-normal">
             Monthly Expenses
           </p>
-          <p className="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">
+          <p className="text-gray-900 dark:text-white tracking-tight text-2xl sm:text-3xl font-bold leading-tight">
             ₹{(summary?.monthlyExpenses || 0).toLocaleString()}
           </p>
           <p
-            className={`text-base font-medium leading-normal ${
+            className={`text-sm sm:text-base font-medium leading-normal ${
               summary?.monthlyTrend >= 0 ? "text-[#EF4444]" : "text-[#10B981]"
             }`}
           >
@@ -116,15 +116,15 @@ const Dashboard = () => {
         </div>
 
         {/* Monthly Savings */}
-        <div className="flex flex-1 flex-col gap-2 rounded-xl p-6 bg-white dark:bg-[#1c1f27]">
-          <p className="text-gray-600 dark:text-[#9da6b9] text-base font-medium leading-normal">
+        <div className="flex flex-1 flex-col gap-2 rounded-xl p-4 sm:p-6 bg-white dark:bg-[#1c1f27] sm:col-span-2 lg:col-span-1">
+          <p className="text-gray-600 dark:text-[#9da6b9] text-sm sm:text-base font-medium leading-normal">
             Monthly Savings
           </p>
-          <p className="text-gray-900 dark:text-white tracking-tight text-3xl font-bold leading-tight">
+          <p className="text-gray-900 dark:text-white tracking-tight text-2xl sm:text-3xl font-bold leading-tight">
             ₹{(summary?.monthlySavings || 0).toLocaleString()}
           </p>
           <p
-            className={`text-base font-medium leading-normal ${
+            className={`text-sm sm:text-base font-medium leading-normal ${
               summary?.savingsTrend >= 0 ? "text-[#10B981]" : "text-[#EF4444]"
             }`}
           >
@@ -135,40 +135,40 @@ const Dashboard = () => {
       </div>
 
       {/* Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
         {/* Recent Transactions */}
-        <div className="lg:col-span-2 flex flex-col gap-8">
-          <h2 className="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+        <div className="lg:col-span-2 flex flex-col gap-4 sm:gap-6">
+          <h2 className="text-gray-900 dark:text-white text-lg sm:text-xl font-bold leading-tight tracking-[-0.015em]">
             Recent Transactions
           </h2>
 
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto -mx-4 sm:mx-0">
             <div className="inline-block min-w-full align-middle">
-              <div className="overflow-hidden rounded-xl bg-white dark:bg-[#1c1f27]">
+              <div className="overflow-hidden sm:rounded-xl bg-white dark:bg-[#1c1f27]">
                 <table className="min-w-full">
                   <thead className="bg-gray-50 dark:bg-[#282e39]">
                     <tr>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
+                        className="px-3 sm:px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
                       >
                         Transaction
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
+                        className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
                       >
                         Category
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
+                        className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
                       >
                         Date
                       </th>
                       <th
                         scope="col"
-                        className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
+                        className="px-3 sm:px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-[#9da6b9]"
                       >
                         Amount
                       </th>
@@ -177,17 +177,24 @@ const Dashboard = () => {
                   <tbody className="divide-y divide-gray-200 dark:divide-[#3b4354]">
                     {topExpenses.map((expense) => (
                       <tr key={expense._id}>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900 dark:text-white">
-                          {expense.description || expense.vendor || "Expense"}
+                        <td className="whitespace-nowrap px-3 sm:px-6 py-4">
+                          <div className="flex flex-col">
+                            <span className="text-sm font-medium text-gray-900 dark:text-white">
+                              {expense.description || expense.vendor || "Expense"}
+                            </span>
+                            <span className="sm:hidden text-xs text-gray-500 dark:text-[#9da6b9]">
+                              {expense.category}
+                            </span>
+                          </div>
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-[#9da6b9]">
+                        <td className="hidden sm:table-cell whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-[#9da6b9]">
                           {expense.category}
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-[#9da6b9]">
+                        <td className="hidden md:table-cell whitespace-nowrap px-6 py-4 text-sm text-gray-500 dark:text-[#9da6b9]">
                           {format(new Date(expense.date), "MMM dd, yyyy")}
                         </td>
                         <td
-                          className={`whitespace-nowrap px-6 py-4 text-right text-sm font-medium ${
+                          className={`whitespace-nowrap px-3 sm:px-6 py-4 text-right text-sm font-medium ${
                             expense.type === "income"
                               ? "text-[#10B981]"
                               : "text-gray-900 dark:text-white"
@@ -216,12 +223,12 @@ const Dashboard = () => {
         </div>
 
         {/* Budget Goals */}
-        <div className="flex flex-col gap-6">
-          <h2 className="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-[-0.015em]">
+        <div className="flex flex-col gap-4 sm:gap-6">
+          <h2 className="text-gray-900 dark:text-white text-lg sm:text-xl font-bold leading-tight tracking-[-0.015em]">
             Budget Goals
           </h2>
 
-          <div className="flex flex-col gap-6 rounded-xl bg-white dark:bg-[#1c1f27] p-6">
+          <div className="flex flex-col gap-4 sm:gap-6 rounded-xl bg-white dark:bg-[#1c1f27] p-4 sm:p-6">
             {summary?.budgetGoals?.map((goal) => (
               <div key={goal.category} className="flex flex-col gap-2">
                 <div className="flex items-baseline justify-between">

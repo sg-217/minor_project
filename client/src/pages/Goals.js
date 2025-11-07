@@ -79,18 +79,15 @@ const Goals = () => {
   if (loading) return <div className="loading">Loading goals...</div>;
 
   return (
-    <div className="flex min-h-screen w-full font-display">
-      {/* Main Content */}
-      <main className="flex-1 p-6 lg:p-8">
-        <div className="mx-auto max-w-7xl">
-          {/* Page Heading and Action Button */}
-          <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
-            <p className="text-slate-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em] min-w-72">
-              Reach Your Milestones
-            </p>
+    <div className="flex flex-col gap-6 sm:gap-8">
+      {/* Page Heading and Action Button */}
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <p className="text-slate-900 dark:text-white text-2xl sm:text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em]">
+          Reach Your Milestones
+        </p>
             <button
               onClick={() => setShowModal(true)}
-              className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-primary text-white gap-2 pl-4 text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30 hover:bg-primary/90 transition-colors"
+              className="flex min-w-[84px] max-w-full sm:max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-11 sm:h-12 px-4 sm:px-5 bg-primary text-white gap-2 text-base font-bold leading-normal tracking-[0.015em] shadow-lg shadow-primary/30 hover:bg-primary/90 transition-colors"
             >
               <span className="material-symbols-outlined">add</span>
               <span className="truncate">Add New Goal</span>
@@ -98,11 +95,11 @@ const Goals = () => {
           </div>
 
           {/* Active Goals Section */}
-          <div className="mb-12">
-            <h2 className="text-slate-900 dark:text-white text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">
+          <div>
+            <h2 className="text-slate-900 dark:text-white text-xl sm:text-[22px] font-bold leading-tight tracking-[-0.015em] pb-3 pt-5">
               Active Goals
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6">
               {goals.length > 0 ? (
                 goals.map((goal) => (
                   <div
@@ -426,8 +423,6 @@ const Goals = () => {
               </div>
             </div>
           )}
-        </div>
-      </main>
     </div>
   );
 };

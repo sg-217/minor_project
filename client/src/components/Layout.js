@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
@@ -8,13 +8,61 @@ const Layout = () => {
   const { user, logout } = useContext(AuthContext);
   const { isDark, toggleTheme } = useTheme();
   const location = useLocation();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const isActive = (path) => location.pathname === path;
 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   return (
     <div className="relative flex min-h-screen w-full flex-col font-display">
+      {/* Mobile Header */}
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-30 flex items-center justify-between bg-white dark:bg-[#111318] border-b border-gray-200 dark:border-gray-800 p-4">
+        <div className="flex items-center gap-3">
+          <div className="size-6 text-primary">
+            <svg
+              fill="currentColor"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clipPath="url(#clip0_6_319)">
+                <path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" />
+              </g>
+              <defs>
+                <clipPath id="clip0_6_319">
+                  <rect fill="white" height="48" width="48" />
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+          <h1 className="text-gray-900 dark:text-white text-base font-bold">
+            PocketPilot
+          </h1>
+        </div>
+        <button
+          onClick={toggleSidebar}
+          className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
+          aria-label="Toggle menu"
+        >
+          <span className="material-symbols-outlined">
+            {isSidebarOpen ? "close" : "menu"}
+          </span>
+        </button>
+      </header>
+
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-40 bg-black/50"
+          onClick={closeSidebar}
+        />
+      )}
+
       {/* Sidebar Navigation */}
-      <aside className="fixed left-0 top-0 z-20 flex h-screen w-64 flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111318] p-4">
+      <aside className={`fixed left-0 top-0 z-50 flex h-screen w-64 flex-col border-r border-gray-200 dark:border-gray-800 bg-white dark:bg-[#111318] p-4 transition-transform duration-300 lg:translate-x-0 lg:z-20 ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      }`}>
         <div className="flex flex-col gap-4">
           {/* Logo & Brand */}
           <div className="flex items-center gap-3">
@@ -48,6 +96,7 @@ const Layout = () => {
           <nav className="mt-4 flex flex-col gap-2">
             <Link
               to="/"
+              onClick={closeSidebar}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg ${
                 isActive("/")
                   ? "bg-primary/10 text-primary dark:bg-primary/20"
@@ -59,6 +108,7 @@ const Layout = () => {
             </Link>
             <Link
               to="/expenses"
+              onClick={closeSidebar}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg ${
                 isActive("/expenses")
                   ? "bg-primary/10 text-primary dark:bg-primary/20"
@@ -70,6 +120,7 @@ const Layout = () => {
             </Link>
             <Link
               to="/goals"
+              onClick={closeSidebar}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg ${
                 isActive("/goals")
                   ? "bg-primary/10 text-primary dark:bg-primary/20"
@@ -81,6 +132,7 @@ const Layout = () => {
             </Link>
             <Link
               to="/analytics"
+              onClick={closeSidebar}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg ${
                 isActive("/analytics")
                   ? "bg-primary/10 text-primary dark:bg-primary/20"
@@ -140,8 +192,8 @@ const Layout = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 min-h-screen bg-background-light dark:bg-background-dark pl-64 p-6">
-        <div className="max-w-7xl mx-auto">
+      <main className="flex-1 min-h-screen bg-background-light dark:bg-background-dark lg:pl-64 pt-16 lg:pt-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
           <Outlet />
         </div>
       </main>

@@ -50,10 +50,10 @@ const Register = () => {
   };
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4 lg:p-8 font-display bg-background-light dark:bg-background-dark">
-      <header className="absolute top-0 left-0 right-0 flex items-center justify-between p-6 lg:px-10 lg:py-8">
+    <div className="relative flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 lg:p-8 font-display bg-background-light dark:bg-background-dark">
+      <header className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 sm:p-6 lg:px-10 lg:py-8">
         <div className="flex items-center gap-3 text-slate-800 dark:text-white">
-          <div className="h-6 w-6 text-primary">
+          <div className="h-5 w-5 sm:h-6 sm:w-6 text-primary">
             {/* SVG Logo */}
             <svg
               fill="currentColor"
@@ -70,14 +70,14 @@ const Register = () => {
               </defs>
             </svg>
           </div>
-          <h2 className="text-xl font-bold leading-tight tracking-[-0.015em]">
+          <h2 className="text-lg sm:text-xl font-bold leading-tight tracking-[-0.015em]">
             PocketPilot
           </h2>
         </div>
-        <div className="hidden items-center gap-9 md:flex">
+        <div className="hidden items-center gap-9 sm:flex">
           <Link
             to="/login"
-            className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+            className="text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
           >
             Already have an account?{" "}
             <span className="font-bold text-primary">Log In</span>
@@ -85,15 +85,15 @@ const Register = () => {
         </div>
       </header>
 
-      <main className="flex w-full max-w-6xl flex-1 items-center justify-center py-16 sm:py-24">
-        <div className="grid w-full grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="flex w-full flex-col justify-center space-y-8 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 sm:p-8 lg:w-auto lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
+      <main className="flex w-full max-w-6xl flex-1 items-center justify-center py-20 sm:py-24">
+        <div className="grid w-full grid-cols-1 gap-8 sm:gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="flex w-full flex-col justify-center space-y-6 sm:space-y-8 rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 sm:p-8 lg:w-auto lg:bg-transparent lg:p-0 lg:shadow-none dark:lg:bg-transparent">
             <div>
-              <div className="flex min-w-72 flex-col gap-2">
-                <p className="text-3xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white md:text-4xl">
+              <div className="flex flex-col gap-2">
+                <p className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight tracking-[-0.033em] text-slate-900 dark:text-white">
                   Start Your Financial Journey
                 </p>
-                <p className="text-base font-normal leading-normal text-slate-500 dark:text-slate-400">
+                <p className="text-sm sm:text-base font-normal leading-normal text-slate-500 dark:text-slate-400">
                   It only takes a minute to get started.
                 </p>
               </div>
@@ -102,13 +102,13 @@ const Register = () => {
             {/* "Step 1 of 3" and progress bar are REMOVED */}
 
             {error && (
-              <div className="rounded-lg bg-red-50 p-4 text-sm text-red-500 dark:bg-red-900/10 dark:text-red-400">
+              <div className="rounded-lg bg-red-50 p-3 sm:p-4 text-xs sm:text-sm text-red-500 dark:bg-red-900/10 dark:text-red-400">
                 {error}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-6">
                 {/* Replaced old labels/inputs with the new component */}
                 <FormInput
                   label="Full Name"
@@ -149,7 +149,7 @@ const Register = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="flex h-6 items-center">
+                <div className="flex h-5 sm:h-6 items-center">
                   <input
                     className="h-4 w-4 rounded border-slate-300 text-primary focus:ring-primary dark:border-slate-600 dark:bg-slate-800 dark:ring-offset-slate-900"
                     id="terms"
@@ -158,7 +158,7 @@ const Register = () => {
                     required
                   />
                 </div>
-                <div className="ml-3 text-sm leading-6">
+                <div className="ml-3 text-xs sm:text-sm leading-5 sm:leading-6">
                   <label
                     className="text-slate-500 dark:text-slate-400"
                     htmlFor="terms"
@@ -178,15 +178,15 @@ const Register = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="flex h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex h-11 sm:h-12 w-full items-center justify-center rounded-lg bg-primary px-6 text-sm sm:text-base font-semibold text-slate-900 shadow-sm hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? "Creating account..." : "Create My Free Account"}
               </button>
 
-              <div className="flex justify-center md:hidden">
+              <div className="flex justify-center sm:hidden">
                 <Link
                   to="/login"
-                  className="text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                  className="text-xs sm:text-sm font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
                 >
                   Already have an account?{" "}
                   <span className="font-bold text-primary">Log In</span>
@@ -204,10 +204,10 @@ const Register = () => {
               />
               <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-background-dark/50 to-transparent"></div>
               <div className="absolute bottom-8 left-8 right-8 rounded-lg border border-white/10 bg-black/20 p-6 text-white backdrop-blur-lg">
-                <h3 className="mb-2 text-xl font-bold">
+                <h3 className="mb-2 text-lg sm:text-xl font-bold">
                   Chart Your Course to Financial Freedom
                 </h3>
-                <p className="text-sm text-slate-300">
+                <p className="text-xs sm:text-sm text-slate-300">
                   PocketPilot makes it simple to track your spending, set goals,
                   and build a brighter financial future. Welcome aboard!
                 </p>

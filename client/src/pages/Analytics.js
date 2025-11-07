@@ -94,17 +94,14 @@ const Analytics = () => {
   }
 
   return (
-    <div className="flex min-h-screen w-full font-display">
-      {/* Main Content */}
-      <main className="flex-1 bg-background-light dark:bg-background-dark p-6 lg:p-8">
-        <div className="mx-auto max-w-7xl">
-          {/* Header */}
-          <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
-            <div className="flex min-w-72 flex-col gap-1">
-              <p className="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+    <div className="flex flex-col gap-6 sm:gap-8">
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-4">
+            <div className="flex flex-col gap-1">
+              <p className="text-gray-900 dark:text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">
                 Spending Insights
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">
+              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base font-normal leading-normal">
                 An overview of your financial activity
               </p>
             </div>
@@ -115,9 +112,10 @@ const Analytics = () => {
                   period === "week"
                     ? "bg-primary text-white"
                     : "bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/80 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-                } pl-4 pr-3 text-sm font-medium leading-normal`}
+                } px-3 sm:px-4 text-xs sm:text-sm font-medium leading-normal`}
               >
-                <span>This Week</span>
+                <span className="hidden sm:inline">This Week</span>
+                <span className="sm:hidden">Week</span>
               </button>
               <button
                 onClick={() => setPeriod("month")}
@@ -125,9 +123,10 @@ const Analytics = () => {
                   period === "month"
                     ? "bg-primary text-white"
                     : "bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/80 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-                } pl-4 pr-3 text-sm font-medium leading-normal`}
+                } px-3 sm:px-4 text-xs sm:text-sm font-medium leading-normal`}
               >
-                <span>This Month</span>
+                <span className="hidden sm:inline">This Month</span>
+                <span className="sm:hidden">Month</span>
               </button>
               <button
                 onClick={() => setPeriod("year")}
@@ -135,11 +134,12 @@ const Analytics = () => {
                   period === "year"
                     ? "bg-primary text-white"
                     : "bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/80 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
-                } pl-4 pr-3 text-sm font-medium leading-normal`}
+                } px-3 sm:px-4 text-xs sm:text-sm font-medium leading-normal`}
               >
-                <span>Year to Date</span>
+                <span className="hidden sm:inline">Year to Date</span>
+                <span className="sm:hidden">Year</span>
               </button>
-              <button className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/80 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 pl-4 pr-3 text-sm font-medium leading-normal">
+              <button className="hidden sm:flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-lg bg-white dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700/80 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 pl-4 pr-3 text-sm font-medium leading-normal">
                 <span className="material-symbols-outlined text-lg">
                   calendar_today
                 </span>
@@ -149,44 +149,44 @@ const Analytics = () => {
           </div>
 
           {/* Summary Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-            <div className="flex flex-col gap-2 rounded-xl p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
-              <p className="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="flex flex-col gap-2 rounded-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base font-medium leading-normal">
                 Total Spending
               </p>
-              <p className="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight">
+              <p className="text-gray-900 dark:text-white tracking-light text-2xl sm:text-3xl font-bold leading-tight">
                 ₹{summary?.total?.toLocaleString() || 0}
               </p>
-              <p className="text-green-500 text-sm font-medium leading-normal flex items-center gap-1">
+              <p className="text-green-500 text-xs sm:text-sm font-medium leading-normal flex items-center gap-1">
                 <span className="material-symbols-outlined text-base">
                   arrow_upward
                 </span>
                 <span>+{trends?.growthRate?.toFixed(1) || 0}%</span>
               </p>
             </div>
-            <div className="flex flex-col gap-2 rounded-xl p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
-              <p className="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">
+            <div className="flex flex-col gap-2 rounded-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base font-medium leading-normal">
                 Total Transactions
               </p>
-              <p className="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight">
+              <p className="text-gray-900 dark:text-white tracking-light text-2xl sm:text-3xl font-bold leading-tight">
                 {summary?.count || 0}
               </p>
-              <p className="text-green-500 text-sm font-medium leading-normal flex items-center gap-1">
+              <p className="text-green-500 text-xs sm:text-sm font-medium leading-normal flex items-center gap-1">
                 <span className="material-symbols-outlined text-base">
                   arrow_upward
                 </span>
                 <span>+{trends?.transactionGrowth || 0}%</span>
               </p>
             </div>
-            <div className="flex flex-col gap-2 rounded-xl p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50">
-              <p className="text-gray-600 dark:text-gray-300 text-base font-medium leading-normal">
+            <div className="flex flex-col gap-2 rounded-xl p-4 sm:p-6 border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900/50 sm:col-span-2 lg:col-span-1">
+              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base font-medium leading-normal">
                 Average Per Transaction
               </p>
-              <p className="text-gray-900 dark:text-white tracking-light text-3xl font-bold leading-tight">
+              <p className="text-gray-900 dark:text-white tracking-light text-2xl sm:text-3xl font-bold leading-tight">
                 ₹{summary?.average?.toLocaleString() || 0}
               </p>
               <p
-                className={`text-sm font-medium leading-normal flex items-center gap-1 ${
+                className={`text-xs sm:text-sm font-medium leading-normal flex items-center gap-1 ${
                   trends?.averageGrowth >= 0 ? "text-green-500" : "text-red-500"
                 }`}
               >
@@ -203,20 +203,20 @@ const Analytics = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             {/* Spending Trends Chart */}
-            <div className="lg:col-span-2 flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-gray-900/50">
+            <div className="lg:col-span-2 flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-6 bg-white dark:bg-gray-900/50">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                 <div>
-                  <p className="text-gray-900 dark:text-white text-lg font-bold leading-normal">
+                  <p className="text-gray-900 dark:text-white text-base sm:text-lg font-bold leading-normal">
                     Spending Trends
                   </p>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm font-normal leading-normal">
+                  <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm font-normal leading-normal">
                     Last 6 Months
                   </p>
                 </div>
               </div>
-              <div className="flex min-h-[250px] flex-1">
+              <div className="flex min-h-[200px] sm:min-h-[250px] flex-1 -mx-2 sm:mx-0">
                 {trendData.length > 0 ? (
                   <ResponsiveContainer width="100%" height={300}>
                     <LineChart data={trendData}>
@@ -227,8 +227,9 @@ const Analytics = () => {
                       <XAxis
                         dataKey="month"
                         className="text-gray-600 dark:text-gray-400"
+                        tick={{ fontSize: 12 }}
                       />
-                      <YAxis className="text-gray-600 dark:text-gray-400" />
+                      <YAxis className="text-gray-600 dark:text-gray-400" tick={{ fontSize: 12 }} />
                       <Tooltip
                         contentStyle={{
                           backgroundColor: "rgb(255, 255, 255)",
@@ -257,11 +258,11 @@ const Analytics = () => {
             </div>
 
             {/* Category Distribution Chart */}
-            <div className="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-gray-900/50">
-              <p className="text-gray-900 dark:text-white text-lg font-bold leading-normal">
+            <div className="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-6 bg-white dark:bg-gray-900/50">
+              <p className="text-gray-900 dark:text-white text-base sm:text-lg font-bold leading-normal">
                 Category Breakdown
               </p>
-              <div className="flex items-center justify-center min-h-[250px] my-auto">
+              <div className="flex items-center justify-center min-h-[200px] sm:min-h-[250px] my-auto">
                 {categoryData.length > 0 ? (
                   <div className="relative w-48 h-48 sm:w-56 sm:h-56">
                     <ResponsiveContainer width="100%" height="100%">
@@ -272,7 +273,7 @@ const Analytics = () => {
                           cy="50%"
                           labelLine={false}
                           label={({ name, percent }) =>
-                            `${name}: ${(percent * 100).toFixed(0)}%`
+                            percent > 0.1 ? `${name}: ${(percent * 100).toFixed(0)}%` : ""
                           }
                           outerRadius={80}
                           dataKey="value"
@@ -297,19 +298,19 @@ const Analytics = () => {
                 )}
               </div>
               {categoryData.length > 0 && (
-                <div className="grid grid-cols-2 gap-x-4 gap-y-2">
+                <div className="grid grid-cols-2 gap-x-2 sm:gap-x-4 gap-y-2">
                   {categoryData.map((category, index) => (
                     <div
                       key={category.name}
                       className="flex items-center gap-2"
                     >
                       <div
-                        className="size-2.5 rounded-full"
+                        className="size-2.5 rounded-full shrink-0"
                         style={{
                           backgroundColor: COLORS[index % COLORS.length],
                         }}
                       ></div>
-                      <span className="text-gray-600 dark:text-gray-300 text-sm">
+                      <span className="text-gray-600 dark:text-gray-300 text-xs sm:text-sm truncate">
                         {category.name}
                       </span>
                     </div>
@@ -321,11 +322,11 @@ const Analytics = () => {
 
           {/* Predictions */}
           {predictionData.length > 0 && (
-            <div className="mt-6 flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-6 bg-white dark:bg-gray-900/50">
-              <p className="text-gray-900 dark:text-white text-lg font-bold leading-normal">
+            <div className="flex flex-col gap-4 rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-6 bg-white dark:bg-gray-900/50">
+              <p className="text-gray-900 dark:text-white text-base sm:text-lg font-bold leading-normal">
                 Next Month Predictions
               </p>
-              <div className="min-h-[300px]">
+              <div className="min-h-[250px] sm:min-h-[300px] -mx-2 sm:mx-0">
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={predictionData}>
                     <CartesianGrid
@@ -335,8 +336,9 @@ const Analytics = () => {
                     <XAxis
                       dataKey="name"
                       className="text-gray-600 dark:text-gray-400"
+                      tick={{ fontSize: 12 }}
                     />
-                    <YAxis className="text-gray-600 dark:text-gray-400" />
+                    <YAxis className="text-gray-600 dark:text-gray-400" tick={{ fontSize: 12 }} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: "rgb(255, 255, 255)",
@@ -356,8 +358,6 @@ const Analytics = () => {
               </div>
             </div>
           )}
-        </div>
-      </main>
     </div>
   );
 };
