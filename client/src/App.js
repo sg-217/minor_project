@@ -14,7 +14,6 @@ import Expenses from "./pages/Expenses";
 import Goals from "./pages/Goals";
 import Analytics from "./pages/Analytics";
 import Layout from "./components/Layout";
-import "./App.css";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);

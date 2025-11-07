@@ -6,7 +6,6 @@ import {
   deleteGoal,
   getGoalRecommendations,
 } from "../services/api";
-import "./Goals.css";
 
 const Goals = () => {
   const [goals, setGoals] = useState([]);

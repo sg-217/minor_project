@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { processVoiceCommand } from "../services/api";
-import "./VoiceAssistant.css";
 
 const VoiceAssistant = () => {
   const [isListening, setIsListening] = useState(false);
@@ -96,44 +95,58 @@ const VoiceAssistant = () => {
   if (!recognition) return null;
 
   return (
-    <div className="va-root fixed bottom-6 right-6 z-50">
+    <div className="fixed bottom-6 right-6 z-50">
       {(isListening || messages.length > 0) && (
-        <div className="va-panel">
-          <div className="va-header">
-            <div className="va-title">Assistant</div>
-            <div className={`va-dot ${isListening ? "active" : ""}`} />
+        <div className="w-[340px] max-h-[60vh] overflow-hidden mb-3 backdrop-blur-md bg-gray-900/70 border border-white/[0.08] shadow-2xl rounded-2xl text-gray-200">
+          <div className="flex items-center justify-between px-3.5 py-2.5 border-b border-white/[0.06]">
+            <div className="font-bold tracking-wide">Assistant</div>
+            <div className={`w-2.5 h-2.5 rounded-full transition-all ${
+              isListening 
+                ? 'bg-green-500 shadow-[0_0_0_6px_rgba(34,197,94,0.12)]' 
+                : 'bg-gray-500'
+            }`} />
           </div>
 
-          <div className="va-body">
+          <div className="p-3 flex flex-col gap-2.5 max-h-[45vh] overflow-auto">
             {messages.slice(-5).map((m, index) => (
               <div
                 key={index}
-                className={`va-bubble ${
-                  m.role === "user" ? "user" : "assistant"
-                }`}
+                className={`rounded-xl px-3 py-2.5 text-sm leading-5 border ${
+                  m.role === "user"
+                    ? "self-end bg-blue-500/15 border-blue-500/25"
+                    : "self-start bg-white/5 border-white/[0.06]"
+                } ${m.role === "user" && liveText === m.text ? "opacity-85" : ""}`}
               >
                 {m.text}
               </div>
             ))}
 
             {isListening && (
-              <div className="va-wave">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+              <div className="flex items-end gap-1 h-7 my-1">
+                <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave"></span>
+                <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.1s]"></span>
+                <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.2s]"></span>
+                <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.3s]"></span>
+                <span className="block w-1.5 h-2 bg-blue-400 rounded animate-wave [animation-delay:0.4s]"></span>
               </div>
             )}
 
-            {liveText && <div className="va-bubble user live">{liveText}</div>}
+            {liveText && (
+              <div className="self-end rounded-xl px-3 py-2.5 text-sm leading-5 bg-blue-500/15 border border-blue-500/25 opacity-85">
+                {liveText}
+              </div>
+            )}
           </div>
         </div>
       )}
 
       <button
         onClick={toggleListening}
-        className={`va-mic ${isListening ? "active" : ""}`}
+        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center border-none text-white transition-all ${
+          isListening
+            ? 'bg-blue-700 shadow-[0_0_0_10px_rgba(37,99,235,0.18),0_8px_22px_rgba(0,0,0,0.35)]'
+            : 'bg-blue-600 shadow-[0_10px_24px_rgba(37,99,235,0.35)] hover:shadow-[0_12px_26px_rgba(37,99,235,0.45)] hover:-translate-y-0.5'
+        }`}
         title="Voice Assistant"
       >
         <span className="material-symbols-outlined">

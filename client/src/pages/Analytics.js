@@ -15,7 +15,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import "./Analytics.css";
 
 const COLORS = [
   "#667eea",
