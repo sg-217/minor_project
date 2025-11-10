@@ -6,7 +6,7 @@ import FormInput from "../components/FormInput";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { loginUser } = useContext(AuthContext);

@@ -14,7 +14,7 @@ const Dashboard = () => {
   const [summary, setSummary] = useState(null);
   const [topExpenses, setTopExpenses] = useState([]);
   const [comparison, setComparison] = useState(null);
-  const [predictions, setPredictions] = useState(null);
+  // const [predictions, setPredictions] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   const fetchData = async () => {
     try {
-      const [summaryRes, topRes, compRes, predRes] = await Promise.all([
+      const [summaryRes, topRes, compRes] = await Promise.all([
         getSummary({ period: "month" }),
         getTopExpenses({ limit: 5, period: "month" }),
         getComparison(),
@@ -33,7 +33,7 @@ const Dashboard = () => {
       setSummary(summaryRes.data.summary);
       setTopExpenses(topRes.data.topExpenses);
       setComparison(compRes.data.comparison);
-      setPredictions(predRes.data.predictions);
+      // setPredictions(predRes.data.predictions);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
     } finally {
